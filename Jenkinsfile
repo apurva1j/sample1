@@ -11,6 +11,20 @@ pipeline {
                 bat "echo Test"
             }
         }
+		stage('Sonarqube') {
+		environment {
+        scannerHome = tool 'SonarScannerLocal'
+		}
+		steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/bin/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+		}
+		}
+		
         stage('Deploy') { 
             steps {
                 bat "echo Deploy"
