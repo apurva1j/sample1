@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy') { 
 	agent{label 'lable1'}
             steps {
-                bat "echo Deploy"
+                sh "echo Deploy"
             }
         }
     }
