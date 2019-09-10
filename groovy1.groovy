@@ -16,8 +16,6 @@ def startJetty() {
     server.handler = handler
     server.start()
 }
-
-
 println "Starting Jetty, press Ctrl+C to stop."
 
 startJetty()
